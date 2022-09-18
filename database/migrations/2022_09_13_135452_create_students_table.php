@@ -16,6 +16,8 @@ class CreateStudentsTable extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
+            $table->foreignId('course_id')->constrained('courses')->onDelete('cascade');
+            $table->string('student_photo');
             $table->string('student_name');
             $table->string('student_mail');
             $table->string('student_phone');
@@ -28,7 +30,8 @@ class CreateStudentsTable extends Migration
             $table->string('blood_group');
             $table->string('educational_qualification');
             $table->date('date_of_birth');
-            $table->string('student_photo');
+            $table->string('parmanent_address');
+            $table->string('present_address');
             $table->timestamps();
         });
     }

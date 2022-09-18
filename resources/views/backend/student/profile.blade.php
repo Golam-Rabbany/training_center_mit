@@ -1,0 +1,44 @@
+@extends('master.backend_master')
+
+@section('dashboard')
+    
+<section>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="mx-auto mt-4  md:ml-6">
+        <span class="text-3xl text-orange-400 font-bold">Personal Details</span>
+        <div class="mt-6">
+          <img class="w-32" src="data:image/jpeg;base64,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" alt="">
+        </div>
+        <div class="mt-4">
+          <p class="font-bold text-lg"><span>Name: </span><span>{{$student_data->student_name}}</span></p>
+          <p class="font-bold text-lg"><span>Email: </span><span>{{$student_data->student_mail}}</span></p>
+          <p class="font-bold text-lg"><span>Phone: </span><span>{{$student_data->student_phone}}</span></p>
+          <p class="font-bold text-lg"><span>Assign Course : </span><span>{{App\Models\Course::find($student_data->course_id)->course_title}}</span></p>
+        </div>
+      </div>
+      <div class="col-span-2 mx-auto md:text-start mt-4 md:mt-0 md:ml-10">
+        <span class="text-3xl text-orange-400 font-bold text-start">About Me</span>
+        <div class="md:flex mt-4">
+          <div>
+            <p class=" text-lg "><span class="font-bold">Father's Name : </span><span>{{$student_data->father_name}}</span></p>
+            <p class=" text-lg "><span class="font-bold">Father's Phone: </span><span>{{$student_data->father_phone}}</span></p>
+            <p class=" text-lg mt-3"><span class="font-bold">Mother's Name : </span><span>{{$student_data->mother_name}}</span></p>
+            <p class=" text-lg "><span class="font-bold">Mother's Phone : </span><span>{{$student_data->mother_phone}}</span></p>
+            <p class=" text-lg mt-2"><span class="font-bold">Gender : </span><span>{{$student_data->student_gender}}</span></p>
+            <p class=" text-lg mt-2"><span class="font-bold">Relegion : </span><span>{{$student_data->relegion}}</span></p>
+          </div>
+  
+          <div class="md:ml-8">
+            <p class="text-lg "><span class="font-bold">Parmanent Address : </span><span>{{$student_data->parmanent_address}}</span></p>
+            <p class="text-lg "><span class="font-bold">Present Address : </span><span>{{$student_data->present_address}}</span></p>
+          </div>
+        </div>
+        
+    
+          
+      </div>
+  
+    </div>
+  </section>
+
+@endsection

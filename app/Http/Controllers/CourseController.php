@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
 use App\Models\Course;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,8 @@ class CourseController extends Controller
 
     public function index()
     {
-        return view('backend.course.index');
+        $course_data = Course::all();
+        return view('backend.course.index',compact('course_data'));
     }
 
     public function create()
@@ -47,7 +49,9 @@ class CourseController extends Controller
 
     public function edit($id)
     {
-        //
+        $course_data = Course::where('id',$id)->first();
+        // dd($course_data);
+        return view('backend.course.edit',compact('course_data'));
     }
 
     public function update(Request $request, $id)
@@ -57,6 +61,9 @@ class CourseController extends Controller
 
     public function destroy($id)
     {
-        //
+        $deleted =  Course::find($id);
+        $deleted->delete();
+        return back();
+
     }
 }

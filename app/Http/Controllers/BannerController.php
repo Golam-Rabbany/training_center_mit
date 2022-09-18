@@ -10,7 +10,8 @@ class BannerController extends Controller
 
     public function index()
     {
-        return view('backend.banner.index');
+        $banner_data = Banner::all();
+        return view('backend.banner.index',compact('banner_data'));
     }
 
     public function create()
@@ -60,7 +61,8 @@ class BannerController extends Controller
 
     public function edit($id)
     {
-        //
+        $banner_data = Banner::where('id', $id)->first();
+        return view('backend.banner.edit',compact('banner_data'));
     }
 
     public function update(Request $request, $id)
@@ -70,6 +72,8 @@ class BannerController extends Controller
 
     public function destroy($id)
     {
-        //
+        $deleted =  Banner::find($id);
+        $deleted->delete();
+        return back();
     }
 }

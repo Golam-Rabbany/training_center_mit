@@ -10,7 +10,7 @@
                 alt="">
             <div class="absolute bottom-64 left-10 sm:left-20">
                 <div>
-                    <span class="text-2xl sm:text-3xl lg:text-7xl md:text-5xl font-bold text-yellow-500">{{$banners->offer}}% </span><span class="text-xl sm:text-2xl lg:text-6xl md:text-4xl font-semibold  text-white">OFF</span>
+                    <span class="text-2xl sm:text-3xl lg:text-7xl md:text-5xl font-bold text-yellow-500">{{$banners->offer}}% </span><span class="text-xl sm:text-2xl lg:text-6xl md:text-4xl font-semibold  text-white"></span><span class="text-lg sm:text-xl lg:text-5xl md:text-3xl font-semibold text-blue-500">OFF</span>
                 </div>
                 <div>
                     <span class="text-3xl @if($loop->index == 0) text-white @else text-black @endif mt-3">{{$banners->quote}}</span>
@@ -44,7 +44,7 @@
                 <div class="bg-gray-300 w-68 block mx-auto my-2" style="height:2px; "></div>
                 <div class="w-full bg-blue-500 text-center my-2"><button class="text-lg rounded-sm text-white px-2 py-1 ">Read More</button></div>
 
-                <div  class="w-full bg-green-500 text-center my-2"><button class="text-lg rounded-sm text-white px-2 py-1 ">Apply Now</button></div>
+                <div  class="w-full bg-green-500 text-center my-2"><a href="{{route('frontend.admission')}}" class="text-lg rounded-sm text-white px-2 py-1 ">Apply Now</a></div>
             </div>
         </div>
         @endforeach

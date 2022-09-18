@@ -21,13 +21,15 @@
 <link rel="stylesheet" href="{{mix('css/app.css')}}">
 <script src="https://cdn.tailwindcss.com"></script>
 
+        @yield('data_table_css')
+
 </head>
 
 <body>
     <div class="main-wrapper">
         <div class="header">
 			<div class="header-left">
-				<a href="index-2.html" class="logo">
+				<a href="{{url('/')}}" class="logo">
 					<img src="{{asset('dashboard/img/icon.png')}}" width="35" height="35" alt=""> <span>MMITSOFT</span>
 				</a>
 			</div>
@@ -110,7 +112,7 @@
                     @if (Auth::user()->role == 0)
                         <li class="menu-title">Main</li>
                         <li class="active">
-                            <a href=""><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+                            <a href="{{route('backend.index')}}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
                         </li>
 
 						<li class="submenu">
@@ -141,6 +143,13 @@
 								<li><a href="{{route('teacher.create')}}">Create Teacher</a></li>
 							</ul>
 						</li>
+						<li class="submenu">
+							<a href="#"><i class="fa fa-money"></i> <span> Payment </span> <span class="menu-arrow"></span></a>
+							<ul style="display: none;">
+								<li><a href="">View Payment</a></li>
+								<li><a href="">Create Payment</a></li>
+							</ul>
+						</li>
 
                     @else
                             
@@ -149,14 +158,6 @@
                         <li class="active">
                             <a href=""><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
                         </li>
-
-						<li class="submenu">
-							<a href="#"><i class="fa fa-money"></i> <span> Banner </span> <span class="menu-arrow"></span></a>
-							<ul style="display: none;">
-								<li><a href="{{route('banner.index')}}">View Banner</a></li>
-								<li><a href="{{route('banner.create')}}">Create Banner</a></li>
-							</ul>
-						</li>
 
                         @endif
                     </ul>
@@ -178,6 +179,8 @@
     <script src="{{asset('dashboard/js/chart.js')}}"></script>
     <script src="{{asset('dashboard/js/app.js')}}"></script>
     @yield('js')
+
+    @yield('data_table_js')
 
 </body>
 

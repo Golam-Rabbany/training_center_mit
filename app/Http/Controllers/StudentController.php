@@ -13,7 +13,11 @@ class StudentController extends Controller
 
     public function index()
     {
-        $student_data = Student::all();
+      $student_data = Student::whereHas('user',function($q){
+         return $q->where('status',1);
+     })->get();
+
+
         return view('backend.student.index',compact('student_data'));
     }
 
@@ -29,6 +33,8 @@ class StudentController extends Controller
             'student_mail'=>'required',
             'student_phone'=>'required|unique:students|max:11',
             'father_name'=>'required',
+            'father_phone'=>'unique:students|max:11',
+            'mother_phone'=>'unique:students|max:11',
             'educational_qualification'=>'required',
             'date_of_birth'=>'required',
             'student_photo'=>'required|image|mimes:jpeg,png,jpg',
@@ -38,13 +44,14 @@ class StudentController extends Controller
        $user_data = new User();
        $user_data->name = $request->student_name;
        $user_data->email = $request->student_mail;
-       $user_data->status = 1;
+       $user_data->status = 0;
        $user_data->password = Hash::make($request->password);
     //    $user_data->save();
 
        if($user_data->save()){
         $student_data = new Student();
         $student_data->user_id =$user_data->id;
+        $student_data->course_id =$request->course_id;
         $student_data->student_name = $request->student_name;
         $student_data->student_mail = $request->student_mail;
         $student_data->student_phone = $request->student_phone;
@@ -57,6 +64,8 @@ class StudentController extends Controller
         $student_data->blood_group = $request->blood_group;
         $student_data->educational_qualification = $request->educational_qualification;
         $student_data->date_of_birth = $request->date_of_birth;
+        $student_data->parmanent_address = $request->parmanent_address;
+        $student_data->present_address = $request->present_address;
          if($request->hasFile('student_photo')){
              $upload = $request->file('student_photo');
              $extention = $upload->getClientOriginalName();
@@ -79,12 +88,14 @@ class StudentController extends Controller
 
     public function show($id)
     {
-        //
+        $student_data = Student::where('id', $id)->first();
+        return view('backend.student.profile',compact('student_data'));
     }
 
     public function edit($id)
     {
-        //
+        $student_data = Student::where('id', $id)->first();
+        return view('backend.student.edit',compact('student_data'));
     }
 
     public function update(Request $request, $id)
@@ -94,6 +105,22 @@ class StudentController extends Controller
 
     public function destroy($id)
     {
-        //
+        $deleted =  Student::find($id);
+        $deleted->delete();
+        return back();
+    }
+
+    public function stutus($id){
+
+      $data=User::find($id);
+
+        return view('backend.student.status',compact('data'));
+    }
+
+    public function status_update(Request $request, $id){
+        $update = User::find($id);
+        $update->status = $request->status;
+        $update->save();
+        return back();
     }
 }

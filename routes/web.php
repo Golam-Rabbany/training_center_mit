@@ -5,6 +5,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 
@@ -45,6 +46,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('course', CourseController::class);
     
     Route::resource('teacher', TeacherController::class);
+
+
+    Route::get('/student/status/{id}', [StudentController::class, 'stutus'])->name('student.status');
+    Route::post('/student/status_update/{id}', [StudentController::class, 'status_update'])->name('student.status_update');
+
+    Route::resource('payment', PaymentController::class);
 
 });
 
