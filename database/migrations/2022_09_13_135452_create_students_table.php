@@ -16,6 +16,8 @@ class CreateStudentsTable extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
+            $table->integer('roll_no')->nullable();
+            $table->integer('register_no')->nullable();
             $table->foreignId('course_id')->constrained('courses')->onDelete('cascade');
             $table->string('student_photo');
             $table->string('student_name');

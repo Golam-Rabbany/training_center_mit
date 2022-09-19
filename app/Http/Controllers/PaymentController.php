@@ -11,7 +11,8 @@ class PaymentController extends Controller
 
     public function index()
     {
-        // return view('backend.payment.index');
+        $student_data = Student::all();
+        return view('backend.payment.index',compact('student_data'));
     }
 
     public function create()
@@ -27,14 +28,17 @@ class PaymentController extends Controller
         $payment_data->course_title = $request->course_title;
         $payment_data->course_fee = $request->course_fee;
         $payment_data->total_pay = $request->total_pay;
+        $payment_data->due = ($request->course_fee) - ($request->total_pay);
         $payment_data->save();
         return back();
     }
 
     public function show($id)
     {
-      return  $student_data = Student::with('course','studentPayment')->where('id', $id)->first();
-        return view('backend.payment.show',compact('student_data'));
+        $payment = Payment::where('student_id', $id)->first();
+        $student_data = Student::with('course','studentPayment')->where('id', $id)->first();
+// return $student_data;
+        return view('backend.payment.show',compact('student_data','payment'));
     }
 
     public function edit($id)
@@ -50,5 +54,9 @@ class PaymentController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function invoice(){
+        return view('backend.payment.invoice');
     }
 }

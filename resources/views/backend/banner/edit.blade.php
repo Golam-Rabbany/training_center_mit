@@ -6,10 +6,11 @@
         <div class="grid grid-cols-1  mx-6 gap-4">
             <div class="mt-6">
                 <p class="text-3xl">Create Banner Form</p>
-                <form action="{{route('banner.store')}}" method="POST" enctype="multipart/form-data">
+                <form action="{{route('banner.update',$banner_data->id)}}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 py-6 px-4">
-                    <div class=" ">
+                    <div class="">
                         <label for="" class="text-lg">Banner Photo</label>
                         <input type="file" name="banner_photo"  class=" rounded-md focus:ountline-none focus:ring-1 focus:blue-400 shadow  w-full py-2 px-2   bg-gray-100 border-none">
                         <img class="mt-2" src="{{asset('uploads/banner/'.$banner_data->banner_photo)}}" alt="">

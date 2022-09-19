@@ -17,16 +17,18 @@
                         <div class="">
                             <label for="" class="text-xl">Course You Assign :</label>
                             <label class="text-xl" for="">{{$student_data->course->course_title}}</label>
+                             
                         </div>
                     </div>
                     <div class="">
                         <div>
                             <label for="" class="text-xl">Total Course Fee :</label>
                             <label class="text-xl" for="">{{$student_data->course->course_fee}}</label>
+                            <input hidden type="text" name="course_fee" value="{{$student_data->course->course_fee}}">
                         </div>
                         <div>
                             <label for="" class="text-xl">Total Payment :</label>
-                            <label class="text-xl" for=""></label>
+                            <label class="text-xl" for="">{{$student_data->course->course_fee}}</label>
                         </div>
                         <div>
                             <label for="" class="text-xl">Total Due :</label>
@@ -37,15 +39,14 @@
                     <div>
                         <label for="" class="text-xl">Payment</label><br>
                         <input type="number" name="total_pay" class="w-1/2 rounded-md focus:ountline-none focus:ring-1 focus:blue-400 shadow py-2 px-2  bg-gray-100 border-none">
+                        <input type="text" name="student_id" value="{{$student_data->id}}" hidden >
+                        <input type="text" name="course_title" value="{{$student_data->course->course_title}}" hidden>
+                        <input type="text" name="course_fee" value="{{$student_data->course->course_fee}}" hidden>
+                        
                     </div>
-
-                    <div>
-                        <input type="hidden" name="student_name" value="">
-                        <input type="hidden" name="course_title" value="">
-                        <input type="hidden" name="course_fee" value="">
-                        <input type="hidden" name="student_id" value="">
-                    </div>
-
+                    
+                    
+                    <input type="text" name="student_name" value="{{$student_data->student_name}}" hidden >
 {{-- 
                     <div class="">
                         <label for="" class="text-lg">Course You Assign</label>

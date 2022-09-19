@@ -1,9 +1,9 @@
 @extends('master.frontend_master')
 
-@section('sweet_alert')
+{{-- @section('sweet_alert')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
-@endsection
+@endsection --}}
 
 @section('frontend')
 <section class="w-full bg-gray-300 min-h-screen">
@@ -12,6 +12,13 @@
             <p class="text-3xl font-bold">Create Student Form </p>
         <form action="{{route('student.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
+
+                @if(session()->has('success'))
+                    <div class="alert bg-green-500 px-4 text-white py-2">
+                        {{ session()->get('success') }}
+                    </div>
+                @endif
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 py-6 px-4">
                 <div class=" ">
                     <label class="text-lg" for="">Select Your Course</label><br>
@@ -156,7 +163,7 @@
             </div>
 
             <div class="mt-4 mb-4 ml-3">
-                <button onclick="alertFunction()" class="px-5 py-2 text-lg text-white bg-blue-500 hover:bg-blue-700 rounded-lg">Submit</button>
+                <button class="px-5 py-2 text-lg text-white bg-blue-500 hover:bg-blue-700 rounded-lg">Submit</button>
             </div>
         </form>
         </div>
@@ -165,7 +172,7 @@
 
 @endsection
 
-@section('sweet_alert_script')
+{{-- @section('sweet_alert_script')
 
     <script>
         function alertFunction(){
@@ -179,4 +186,4 @@
         }
     
 </script>
-@endsection
+@endsection --}}

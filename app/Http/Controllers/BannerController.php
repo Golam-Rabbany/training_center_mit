@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Banner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+
 
 class BannerController extends Controller
 {
@@ -67,7 +69,24 @@ class BannerController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        $banner_data = Banner::find($id);
+        $banner_data->offer = $request->offer;
+        $banner_data->quote = $request->quote;
+
+        if($request->hasFile('banner_photo')){
+            $delete_photo = public_path('uploads/banner/'.$banner_data->banner_photo);
+            if(File::exists($delete_photo)){
+                File::delete($delete_photo);
+            }
+            $uploaded = $request->file('banner_photo');
+            $extention=$uploaded->getClientOriginalName();
+            $filename=time().rand(0,9999).'.'.$extention;
+            $uploaded->move('uploads/banner/',$filename);
+            $banner_data->banner_photo=$filename;
+        }
+        $banner_data->update();
+
+        return back();
     }
 
     public function destroy($id)

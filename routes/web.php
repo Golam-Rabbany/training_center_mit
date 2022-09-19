@@ -41,8 +41,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('banner', BannerController::class);
     
-    
-    
     Route::resource('course', CourseController::class);
     
     Route::resource('teacher', TeacherController::class);
@@ -52,6 +50,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/student/status_update/{id}', [StudentController::class, 'status_update'])->name('student.status_update');
 
     Route::resource('payment', PaymentController::class);
+
+    Route::get('/invoice/payment', [PaymentController::class, 'invoice'])->name('payment.invoice');
 
 });
 

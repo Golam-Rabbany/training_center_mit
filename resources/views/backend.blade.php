@@ -37,7 +37,7 @@
     </div>
 </div>
 
-
+@if (Auth::user()->role == 0)
     <section class="overflow-x-scroll mt-32 mx-2">
         <table id="myTable" class="table-auto border-collapse border border-slate-500 w-full ">
             <thead>
@@ -83,6 +83,7 @@
             </tbody>
         </table>
 </section>
+@endif
 
 @endsection
 

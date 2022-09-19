@@ -6,8 +6,9 @@
         <div class="grid grid-cols-1  mx-6 gap-4">
             <div class="mt-6">
                 <p class="text-3xl">Edit Student Form </p>
-                <form action="{{route('student.store')}}" method="POST" enctype="multipart/form-data">
+                <form action="{{route('student.update',$student_data->id)}}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 py-6 px-4">
                     <div class=" ">
                         <label for="" class="text-lg">Student Name</label>

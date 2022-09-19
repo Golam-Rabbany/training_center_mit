@@ -20,6 +20,7 @@ class CreatePaymentsTable extends Migration
             $table->string('course_title');
             $table->integer('course_fee');
             $table->integer('total_pay')->nullable();
+            $table->integer('due')->nullable();
             $table->timestamps();
         });
     }

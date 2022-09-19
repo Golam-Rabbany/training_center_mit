@@ -146,8 +146,8 @@
 						<li class="submenu">
 							<a href="#"><i class="fa fa-money"></i> <span> Payment </span> <span class="menu-arrow"></span></a>
 							<ul style="display: none;">
-								<li><a href="">View Payment</a></li>
-								<li><a href="">Create Payment</a></li>
+								<li><a href="{{route('payment.index')}}">View Payment</a></li>
+								<li><a href="{{route('payment.create')}}">Create Payment</a></li>
 							</ul>
 						</li>
 
